@@ -64,9 +64,22 @@ def quick_sort(arr: list, low: int, high: int) -> list:
     return arr
 
 
-def test_merge_sort():
-    for i in range(1, 101):
-        arr = [random.randint(0, 100) for _ in range(10)]
+def test_merge_sort(complexity: int = 0):
+    match complexity:
+        case 0:
+            iterations = 100
+            size = 100
+        case 1:
+            iterations = 10000
+            size = 10000
+        case 2:
+            iterations = 100000
+            size = 100000
+        case _:
+            raise ValueError('Invalid complexity')
+
+    for i in range(0, iterations):
+        arr = [random.randint(0, size) for _ in range(size)]
 
         low = 0
         high = len(arr) - 1
@@ -85,4 +98,4 @@ def test_merge_sort():
 
 
 if __name__ == "__main__":
-    test_merge_sort()
+    test_merge_sort(1)

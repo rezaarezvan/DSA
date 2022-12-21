@@ -25,12 +25,25 @@ def selection_sort(arr: list) -> list:
     return arr
 
 
-def test_selection_sort():
-    for i in range(1, 101):
-        arr = [random.randint(0, 100) for _ in range(100)]
+def test_selection_sort(complexity: int = 0):
+    match complexity:
+        case 0:
+            iterations = 100
+            size = 100
+        case 1:
+            iterations = 10000
+            size = 10000
+        case 2:
+            iterations = 100000
+            size = 100000
+        case _:
+            raise ValueError('Invalid complexity')
+
+    for i in range(0, iterations):
+        arr = [random.randint(0, size) for _ in range(size)]
         assert selection_sort(arr) == sorted(arr)
         print(f"Test {i} passed")
 
 
 if __name__ == "__main__":
-    test_selection_sort()
+    test_selection_sort(1)

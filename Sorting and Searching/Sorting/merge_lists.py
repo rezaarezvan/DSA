@@ -37,15 +37,28 @@ def merge_lists(arr1: list, arr2: list) -> list:
     return result
 
 
-def test_insertion_sort():
-    for i in range(1, 101):
+def test_insertion_sort(complexity: int = 0):
+    match complexity:
+        case 0:
+            iterations = 100
+            size = 100
+        case 1:
+            iterations = 10000
+            size = 10000
+        case 2:
+            iterations = 100000
+            size = 100000
+        case _:
+            raise ValueError('Invalid complexity')
+
+    for i in range(0, iterations):
 
         # To make sure we can merge lists of different length
-        l1 = random.randint(1, 100)
-        l2 = random.randint(1, 100)
+        l1 = random.randint(0, size)
+        l2 = random.randint(0, size)
 
-        arr1 = [random.randint(0, 100) for _ in range(l1)]
-        arr2 = [random.randint(0, 100) for _ in range(l2)]
+        arr1 = [random.randint(0, size) for _ in range(l1)]
+        arr2 = [random.randint(0, size) for _ in range(l2)]
 
         # Make sure both lists are sorted
         arr1 = sorted(arr1)
@@ -56,4 +69,4 @@ def test_insertion_sort():
 
 
 if __name__ == "__main__":
-    test_insertion_sort()
+    test_insertion_sort(1)
