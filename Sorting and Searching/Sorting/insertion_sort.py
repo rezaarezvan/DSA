@@ -23,6 +23,10 @@ def insertion_sort(arr: list) -> list:
 
 
 def test_insertion_sort(complexity: int = 0):
+    '''
+    Tests the insertion sort algorithm.
+    '''
+
     match complexity:
         case 0:
             iterations = 100
