@@ -19,7 +19,8 @@ class dynamic_array:
         self.size += 1
 
     def resize(self):
-        new_array = [None] * 2
+        growth_factor = 2 * self.size
+        new_array = [None] * growth_factor
 
         for i in range(len(self.array)):
             new_array[i] = self.array[i]
@@ -40,3 +41,24 @@ class dynamic_array:
         self.array[self.size - 1] = None
         self.size -= 1
     '''
+
+
+def test_dynamic_array():
+    test_array = dynamic_array()
+    for i in range(10):
+        test_array.append(i)
+
+    for i in range(10):
+        assert test_array.get(i) == i
+
+    for i in range(10):
+        test_array.set(i, i * 2)
+
+    for i in range(10):
+        assert test_array.get(i) == i * 2
+
+    print("All tests passed")
+
+
+if __name__ == "__main__":
+    test_dynamic_array()
