@@ -1,3 +1,4 @@
+```
 Deque<Item>:
 
     /*
@@ -15,3 +16,4 @@ Deque<Item>:
 
     // Removes and returns the last item in the deque
     Item remove_last()
+```

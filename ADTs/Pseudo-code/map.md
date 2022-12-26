@@ -1,3 +1,4 @@
+```
 Map<Key, Value>:
 
     /*
@@ -31,3 +32,4 @@ Map<Key, Value>:
 
     // Iterates over all keys in the map
     Iterator<Key> keys()
+```

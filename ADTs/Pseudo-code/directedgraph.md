@@ -1,3 +1,4 @@
+```
 DirectedGraph<Node>:
 
     /*
@@ -24,3 +25,4 @@ DirectedGraph<Node>:
 
     // Returns the total number of edges in the graph
     int n_edges()
+```

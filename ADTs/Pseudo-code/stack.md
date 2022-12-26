@@ -1,3 +1,4 @@
+```
 Stack<Item>:
 
     /*
@@ -20,3 +21,4 @@ Stack<Item>:
 
     Returns the current size (length) of the stack
     int size()
+```

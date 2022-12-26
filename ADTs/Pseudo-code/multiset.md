@@ -1,3 +1,4 @@
+```
 Multiset<Item>:
 
     /*
@@ -14,3 +15,4 @@ Multiset<Item>:
 
     // Removes one occurrence of Item x, returns the Item
     Item remove(Item x)
+```
