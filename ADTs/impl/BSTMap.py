@@ -43,6 +43,49 @@ class BSTMap:
 
         return node.value
 
+    def get_min(self, tree):
+        current_node = tree.root
+
+        while current_node.left is not None:
+            current_node = current_node.left
+
+        return current_node.value
+
+    def get_max(self, tree):
+        current_node = tree.root
+
+        while current_node.right is not None:
+            current_node = current_node.right
+
+        return current_node.value
+
+    def delete(self, node, key):
+        if node is None:
+            return node
+
+        if key < node.key:
+            node.left = self.delete(node.left, key)
+
+        elif key > node.key:
+            node.right = self.delete(node.right, key)
+
+        else:
+            if node.left is None:
+                temp = node.right
+                node = None
+                return temp
+
+            elif node.right is None:
+                temp = node.left
+                node = None
+                return temp
+
+            temp = self.get_max(node.left)
+            node.key = temp.key
+            node.left = self.delete(node.left, temp.key)
+
+        return node
+
 
 def test_BSTMap():
     map = BSTMap()
@@ -54,6 +97,12 @@ def test_BSTMap():
     print(map.root.value)
     print(map.root.left.value)
     print(map.root.right.value)
+
+    map.delete(map.root, 6)
+
+    print(map.root.value)
+    print(map.root.left.value)
+    print(map.root.right)
 
     print("test_BSTMap passed!")
 
