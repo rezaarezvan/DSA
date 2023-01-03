@@ -3,6 +3,7 @@ A program to represent graphs in python
 '''
 
 import random
+import queue_linked_list
 
 
 class Edge:
@@ -59,6 +60,22 @@ class Graph:
             if w not in visited:
                 self.recursive_DFS(w, visited)
 
+    def iterative_BFS(self, start):
+        visited = set()
+        q = queue_linked_list.Queue()
+        q.enqueue(start)
+        visited.add(start)
+
+        while not q.is_empty():
+            v = q.dequeue()
+            print(f'Visited {v}')
+
+            for edge in self.outgoing_edges(v):
+                w = edge.dst
+                if w not in visited:
+                    q.enqueue(w)
+                    visited.add(w)
+
 
 def test_graph():
     g = Graph()
@@ -71,7 +88,12 @@ def test_graph():
     g.add(Edge(1, 4))
 
     print(g)
+
+    print("DFS from 1")
     g.recursive_DFS(1, set())
+
+    print("BFS from 1")
+    g.iterative_BFS(1)
 
     print("All tests passed")
 
