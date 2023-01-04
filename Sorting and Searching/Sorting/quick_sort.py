@@ -39,9 +39,11 @@ def partition(arr, low, high):
     def swap(i, j):
         (arr[i], arr[j]) = (arr[j], arr[i])
 
-    pivot_index = median_of_three_pivot(arr, low, high)
+    '''
+    Our partition algorithm requires that the pivot is the last element in the array.
 
-    # Our partition algorithm requires that the pivot be the last element
+    Algorithm for partitioning:
+    pivot_index = median_of_three_pivot(arr, low, high)
     swap(pivot_index, high)
 
     pivot = arr[high]
@@ -54,6 +56,38 @@ def partition(arr, low, high):
 
     swap(i + 1, high)
     return i + 1
+
+    Another approach (the one used in the course):
+        swap(pivot_index, low)
+        pivot = arr[low]
+        i = low + 1
+
+        for j in range(low + 1, high + 1):
+            if arr[j] < pivot:
+                swap(i, j)
+                i += 1
+
+        swap(low, i - 1)
+        return i - 1
+    '''
+    pivot_index = median_of_three_pivot(arr, low, high)
+    swap(pivot_index, low)
+    pivot = arr[low]
+    low_pointer = low + 1
+    high_pointer = high
+
+    while low_pointer <= high_pointer:
+        if arr[low_pointer] < pivot:
+            low_pointer += 1
+        elif arr[high_pointer] > pivot:
+            high_pointer -= 1
+        else:
+            swap(low_pointer, high_pointer)
+            low_pointer += 1
+            high_pointer -= 1
+
+    swap(low, high_pointer)
+    return high_pointer
 
 
 def quick_sort(arr: list, low: int, high: int) -> list:
@@ -98,4 +132,4 @@ def test_merge_sort(complexity: int = 0):
 
 
 if __name__ == "__main__":
-    test_merge_sort(1)
+    test_merge_sort()
