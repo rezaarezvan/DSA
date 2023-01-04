@@ -3,8 +3,17 @@ import merge_lists as ml
 
 
 def merge_sort(arr: list) -> list:
+    '''
+    Algorithm:
+        1. Split the array into two halves
+        2. Recursively sort the two halves
+        3. Merge the two sorted halves
+    '''
+
+    # Base case, if the array is empty or has one element, it is sorted
     if len(arr) < 2:
         return arr[:]
+
     else:
         mid = len(arr) // 2
 
@@ -35,4 +44,4 @@ def test_merge_sort(complexity: int = 0):
 
 
 if __name__ == "__main__":
-    test_merge_sort(1)
+    test_merge_sort()
