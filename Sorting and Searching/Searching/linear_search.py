@@ -4,6 +4,8 @@ import random
 def linear_search(arr: list, target: int) -> int:
     '''
     Algorithm:
+        1. Iterate through the array
+        2. If the current element is equal to the target, return the index
     '''
 
     '''
