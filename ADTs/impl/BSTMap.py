@@ -7,6 +7,14 @@ class Node:
 
 
 class BSTMap:
+    '''
+    A BST class which can represent a map (key-value pairs)
+
+    Only difference from a normal BST is that each node has a key and value.
+
+    Same logic and complexity as the normal BST
+    '''
+
     def __init__(self):
         self.root = None
 
