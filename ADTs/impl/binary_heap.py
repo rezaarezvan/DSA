@@ -1,4 +1,25 @@
 class min_priority_queue:
+    '''
+    A min-prio queue using (min-)binary heaps
+
+    The heap is represented as a list, where the root is at index 0.
+    The children of the node at index i are at indices 2i+1 and 2i+2.
+    (or, the parent of a node is at index (i-1)//2)
+
+    Description:
+        add(item) - add an item to the heap:
+            add the item to the end of the list
+            if the newly added item is smaller than its parent, we swamp them
+            and repeat the process until the heap property is restored
+
+        remove_min() - remove the minimum item from the heap:
+            swap the root with the last item in the list
+            remove the last item from the list
+            if the new root is larger than one of its children, we swap it
+            with the smaller of the two children and repeat the process until
+            the heap property is restored
+    '''
+
     def __init__(self):
         self.heap = []
 
