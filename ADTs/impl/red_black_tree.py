@@ -1,9 +1,10 @@
-'''
-A program to implement a red-black tree.
-'''
-
-
 class RBNode:
+    '''
+    A auxiliary class for the red black tree.
+
+    A RBNode has a value, a color, a left child, a right child and a parent.
+    '''
+
     def __init__(self, value, color=False):
         self.value = value
         self.red = color
@@ -13,6 +14,40 @@ class RBNode:
 
 
 class RBTree:
+    '''
+    A class that represents a red black tree.
+
+    A red black tree is a binary search tree (specifically implements a 2-3 using a BST)
+
+    The 2 nodes in a 2-3 tree become black in a RB tree.
+    The 3 nodes in a 2-3 tree become become with a red child.
+
+    Invariants:
+        1. A red node must be the left child of a black node.
+        2. Black balance: Every path from the root to a leaf must have the same number of black nodes.
+        3. The BST property must be maintained.
+
+    Description:
+        insert: Insert a node into the tree:
+            Do a normal BST insertion, the new node is red.
+
+            This might break the tree, so we need to fix it.
+
+            There are 3 cases:
+                Case 1. Skew:
+                    We have put the new (red) node as the right child of a black node.
+
+                Case 2: Split:
+                    We have created a 4-node (or a red node with a red child).
+                    We split the 4-node into 2 2-nodes.
+                    This may break the black balance, which means we recursively fix the tree.
+
+                Case 3: Red Root Node:
+                    After a split, the root node may become red.
+
+                    This is a simple fix, we just make the root node black.
+    '''
+
     def __init__(self):
         self.nil = RBNode(0)
         self.nil.red = False
