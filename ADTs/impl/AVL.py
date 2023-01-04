@@ -2,6 +2,16 @@ import random
 
 
 class Node:
+    '''
+    In a AVL tree each node also has a height attribute.
+
+    Height of a node is the number of *levels* in the tree.
+
+    Level is the distance from a node to the root node.
+
+    Meaning height is the number of edges from a node to the root node.
+    '''
+
     def __init__(self, value, left=None, right=None, height=1):
         self.value = value
         self.left = left
@@ -10,6 +20,61 @@ class Node:
 
 
 class AVL:
+    '''
+    A class that represents a AVL tree.
+
+    A AVL tree is a self-balancing binary search tree.
+
+    Invariant:
+        The height of the left and right subtree of any node differ by at most **1**.
+
+    This way the tree is *almost* balanced.
+
+    Rotations:
+        Right rotation:
+            left child of root becomes new root, the old root becomes new right child of new root.
+
+        Left rotation:
+            right child of root becomes new root, old root becomes new left child of new root.
+
+        Rule of thumb:
+            The old root becomes the new child in *that* direction. The new root is the opposite direction child, from the name.
+
+        Rotations preserve the ordering and contents in BSTs.
+
+    Description:
+        get_balance_factor(node):
+            Returns the height difference between the left and right subtree of a node.
+
+        insert(value):
+            We have to consider 4 cases:
+
+                Case 1: Left-left tree:
+                    We did an insertion on the left child of the left child of this node.
+
+                    To fix this we do a right rotation.
+
+                Case 2: Right-right tree:
+                    We did an insertion on the right child of the right child of this node.
+
+                    To fix this we do a left rotation.
+
+                Case 3: Left-right tree:
+                    The extra height is in the root's left child then in the right child of that.
+
+                    To fix this, we first do a left rotation on the left subtree, then a right rotation.
+
+                Case 4: Right-left tree:
+                    The extra height is in the root's right child then in the left child of that.
+
+                    To fix this, we first do a right rotation on the right subtree, then a left rotation.
+
+        delete(value):
+            It's the same logic as insertion - but instead we reduce the height by one and therefore break the invariant.
+
+            We apply the same balancing logic as insertion.
+    '''
+
     def __init__(self):
         self.root = None
 
@@ -23,22 +88,22 @@ class AVL:
             return 0
         return self.get_height(node.left) - self.get_height(node.right)
 
-    def right_rotate(self, node):
-        new_root = node.left
-        node.left = new_root.right
-        new_root.right = node
-        node.height = max(self.get_height(node.left),
-                          self.get_height(node.right)) + 1
+    def right_rotate(self, old_root):
+        new_root = old_root.left
+        old_root.left = new_root.right
+        new_root.right = old_root
+        old_root.height = max(self.get_height(old_root.left),
+                              self.get_height(old_root.right)) + 1
         new_root.height = max(self.get_height(
             new_root.left), self.get_height(new_root.right)) + 1
         return new_root
 
-    def left_rotate(self, node):
-        new_root = node.right
-        node.right = new_root.left
-        new_root.left = node
-        node.height = max(self.get_height(node.left),
-                          self.get_height(node.right)) + 1
+    def left_rotate(self, old_root):
+        new_root = old_root.right
+        old_root.right = new_root.left
+        new_root.left = old_root
+        old_root.height = max(self.get_height(old_root.left),
+                              self.get_height(old_root.right)) + 1
         new_root.height = max(self.get_height(
             new_root.left), self.get_height(new_root.right)) + 1
         return new_root
