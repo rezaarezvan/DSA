@@ -1,4 +1,8 @@
 class Node:
+    '''
+    Auxilary Node class
+    '''
+
     def __init__(self, value, left=None, right=None):
         self.value = value
         self.left = left
@@ -6,6 +10,56 @@ class Node:
 
 
 class BSTMap:
+    '''
+    A Balanced Search Tree class
+
+    Description:
+
+        insert/put_node(value, node) - inserts a value into the tree
+            We recursively traverse the tree.
+
+            If the parent node is None, we create a new node and return it.
+            If the value is less than the parent node, we traverse the left subtree.
+            If the value is greater than the parent node, we traverse the right subtree.
+
+        get_node(value, node) - returns the value of the node with the given value
+
+            We perform a recursive search for the node with the given value.
+
+            If the node is None (does not exist), we return None.
+
+            If the value is less than the node, we traverse the left subtree.
+            If the value is greater than the node, we traverse the right subtree.
+            If the value is equal to the node, we return the value.
+
+        get_min/max(tree) - returns the minimum/maximum value in the tree
+
+            Perform a recursive search for the minimum/maximum value in the tree.
+
+            To find minimum, find the leftmost node in the tree.
+            Meaning we traverse the left subtree until we reach a node with no left child.
+
+            To find maximum, find the rightmost node in the tree.
+            Meaning we traverse the right subtree until we reach a node with no right child.
+
+        delete_node(value, node) - deletes the node with the given value
+
+            To delete a node in a BST, we need to consider 3 cases:
+
+            1. The node is a leaf node (has no children)
+                In this case, we simply delete the node, since it doesn't have any children it wont break the BST property.
+
+            2. The node has exactly one child
+                In this case, we replace the node with its respective child.
+
+            3. The node has two children
+                In this case, we replace the node with it's predecessor or successor.
+
+                Meaning we either replace it with the node that is immediately before it in the tree (predecessor)
+                or the node that is immediately after it in the tree (successor).
+
+    '''
+
     def __init__(self):
         self.root = None
 
