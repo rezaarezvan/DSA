@@ -46,4 +46,4 @@ def test_selection_sort(complexity: int = 0):
 
 
 if __name__ == "__main__":
-    test_selection_sort(1)
+    test_selection_sort()

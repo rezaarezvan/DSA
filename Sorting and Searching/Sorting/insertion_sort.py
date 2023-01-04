@@ -48,4 +48,4 @@ def test_insertion_sort(complexity: int = 0):
 
 
 if __name__ == "__main__":
-    test_insertion_sort(1)
+    test_insertion_sort()
