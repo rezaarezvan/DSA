@@ -1,4 +1,5 @@
 import random
+from queue import PriorityQueue
 import queue_linked_list
 
 
@@ -48,6 +49,16 @@ class Graph:
         The queue is initialized with the starting node.
         The algorithm then visits the first node in the queue, enqueues all of its children to the queue
         and then dequeues the first node from the queue. This process is repeated until the queue is empty.
+
+
+        UCS(self, start) performs a uniform cost search on the graph
+
+        Note: Uniform Cost Search is an algorithm for traversing a graph
+
+        It is similar to BFS, but instead of using a queue, it uses a priority queue_linked_list
+        The priority queue_linked_list is initialized with the starting node and its cost.
+
+
     '''
 
     def __init__(self):
@@ -109,6 +120,22 @@ class Graph:
                     q.enqueue(w)
                     visited.add(w)
 
+    def UCS(self, start):
+        visited = set()
+        q = PriorityQueue()
+        q.put((0, start))
+        visited.add((0, start))
+
+        while not q.empty():
+            cost, v = q.get()
+            print(f'Visited {(cost, v)}')
+
+            for edge in self.outgoing_edges(v):
+                w = edge.dst
+                if (cost+edge.weight, w) not in visited:
+                    q.put((cost+edge.weight, w))
+                    visited.add((cost+edge.weight, w))
+
 
 def test_graph():
     g = Graph()
@@ -122,11 +149,14 @@ def test_graph():
 
     print(g)
 
-    print("DFS from 1")
+    print("\nDFS from 1")
     g.recursive_DFS(1, set())
 
-    print("BFS from 1")
+    print("\nBFS from 1")
     g.iterative_BFS(1)
+
+    print("\nUCS from 1")
+    g.UCS(1)
 
     print("All tests passed")
 
