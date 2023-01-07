@@ -136,12 +136,39 @@ class Graph:
                     q.put((cost+edge.weight, w))
                     visited.add((cost+edge.weight, w))
 
+    def prims(self, start):
+        visited = set()
+        q = PriorityQueue()
+        q.put((0, start))
+        visited.add((0, start))
+
+        while not q.empty():
+            cost, v = q.get()
+            print(f'Visited {(cost, v)}')
+
+            for edge in self.outgoing_edges(v):
+                w = edge.dst
+                if (edge.weight, w) not in visited:
+                    q.put((edge.weight, w))
+                    visited.add((edge.weight, w))
+
+    def kruskals(self):
+        visited = set()
+        q = PriorityQueue()
+        for edge in self.all_edges.values():
+            q.put((edge.weight, edge.src, edge.dst))
+
+        while not q.empty():
+            cost, v, w = q.get()
+            print(f'Visited {(cost, v, w)}')
+
 
 def test_graph():
     g = Graph()
 
     for i in range(10):
-        g.add(Edge(random.randint(1, 10), random.randint(0, 10)))
+        g.add(Edge(random.randint(1, 10), random.randint(
+            0, 10), random.randint(0, 10)))
 
     g.add(Edge(1, 2))
     g.add(Edge(1, 3))
@@ -155,8 +182,14 @@ def test_graph():
     print("\nBFS from 1")
     g.iterative_BFS(1)
 
-    print("\nUCS from 1")
-    g.UCS(1)
+    # print("\nUCS from 1")
+    # g.UCS(1)
+
+    print("\nPrims from 1")
+    g.prims(1)
+
+    print("\nKruskals")
+    g.kruskals()
 
     print("All tests passed")
 
