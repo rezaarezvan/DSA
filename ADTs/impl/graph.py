@@ -160,7 +160,9 @@ class Graph:
 
         while not q.empty():
             cost, v, w = q.get()
-            print(f'Visited {(cost, v, w)}')
+            if (v, w) not in visited:
+                print(f'Visited {(cost, v, w)}')
+                visited.add((v, w))
 
 
 def test_graph():
