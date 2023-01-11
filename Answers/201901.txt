@@ -1,0 +1,110 @@
+1.
+
+n - # of elements in the input array
+
+[0, 0, 0, 0, 0, 10, 10, 10, 10, 10, 10]
+O(n):
+
+    if O(1):
+
+    O(1)
+    O(1)
+
+O(n log n)
+
+[0, 10]
+O(m log m)
+
+O(n + m log m)
+
+1b
+
+set is unbalanced BST
+
+O(n):
+    if O(n):
+        O(n)
+        O(1)
+
+O(m log m)
+
+O(n²+  m log m)
+
+
+2. [9, , 2, 12, 3, , , 7, 18, 8]
+
+    [9, , 2, 12, 3, , , DELETED, 18, 8]
+
+
+curr node = root
+
+while curr node.left != NULL:
+    curr_node = curr_node.left
+
+deleteNode(curr_node)
+
+
+return curr_node.val
+
+deleteNode(node)
+
+if node.left == NULL and node.right == NULL:
+    node = NULL
+    return
+
+if node.left == NULL:
+    node = node.right
+    return
+
+if node.right == NULL:
+    node = node.left
+    return
+
+node = findLeftMost(node)
+
+
+C
+
+CF
+CA
+AD
+DB
+FG
+GE
+EH
+
+O(n log n)
+
+foo(input, k):
+    temp = new max bin heap
+
+    count = 0
+
+    temp.add()
+
+    if c == k:
+        remove
+    else:
+        c++
+
+    O(n log k)
+    ----------------------
+    for element in input:
+        O(log k)
+        temp.add(element)
+
+        if count == k:
+            O(log k)
+            temp.removeMin()
+        else:
+            count++
+
+    sum = 0
+    O(k)
+    for i in range(k):
+        O(log n)
+        sum += temp.removeMax()
+
+    O(k log n)
+
+    O(n log k) > O(k log k)

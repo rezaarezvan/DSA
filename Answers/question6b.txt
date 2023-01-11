@@ -1,0 +1,13 @@
+Removed node:   Added Node(s):  Prio queue:
+
+-               A               A:0
+A               D, B            D:1, B:12
+D               B               B:10, B:12
+B               F, G            B:12, G:13, F:16
+B               -               G:13, F:16
+G               C, E            F:16, C:18, E:20
+F               A               C:18, E:20, A:27
+C               -               E:20, A:27
+E               B, C            C:22, B:24, A:27
+C               -               B:24, A:27
+B               -               A:27
