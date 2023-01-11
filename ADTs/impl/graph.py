@@ -59,6 +59,18 @@ class Graph:
         The priority queue_linked_list is initialized with the starting node and its cost.
 
 
+        prims(self, start) performs prim's algorithm, to find the MST (Minimal Spanning Tree) on a graph
+
+        Note: prim's algorithm is a so called greedy algorithm.
+
+        Pick a arbitrary node on the graph, choose the edge with the lowest cost.
+        Continue this process, we skip over edges that would create a cycle
+        Meaning if choose an edge to a already visited/connected vertex.
+
+        When we have visted all vertices, we have found the MST.
+
+        kruskals(self) performs kruskals algorithm, to find the MST (Minimal Spanning TRee) on a graph.
+
     '''
 
     def __init__(self):

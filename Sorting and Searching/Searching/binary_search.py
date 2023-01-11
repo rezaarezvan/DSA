@@ -28,6 +28,29 @@ def binary_search(arr: list, target: int) -> int:
     return -1
 
 
+def binary_search_recursive(arr: list, target: int, low: int, high: int) -> int:
+    '''
+    Algorithm:
+        1. Compare the middle element of the array with the target (The input list must be sorted)
+        2. If the target is equal to the middle element, return the index of the middle element
+        3. If the target is less than the middle element, search the left half of the array
+        4. If the target is greater than the middle element, search the right half of the array
+    '''
+    if low > high:
+        return -1
+
+    mid = (low + high) // 2
+
+    if arr[mid] < target:
+        return binary_search_recursive(arr, target, mid + 1, high)
+
+    elif arr[mid] > target:
+        return binary_search_recursive(arr, target, low, mid - 1)
+
+    else:
+        return mid
+
+
 def test_binary_search(complexity: int = 0):
     match complexity:
         case 0:
@@ -49,6 +72,8 @@ def test_binary_search(complexity: int = 0):
 
         # +-1 because of the way the binary search works
         assert binary_search(arr, target) == arr.index(target) + 1 or -1
+        assert binary_search_recursive(
+            arr, target, 0, size - 1) == arr.index(target) + 1 or -1
 
         print(f"Test {i} passed")
 
